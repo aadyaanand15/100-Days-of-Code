@@ -1,0 +1,23 @@
+#include <stdio.h>
+
+int main() {
+    int arr[] = {12, -5, 7, 0, 14, 9, -22, 3};
+    
+    int size = sizeof(arr) / sizeof(arr[0]);
+  
+    int even_count = 0;
+    int odd_count = 0;
+    
+    for (int i = 0; i < size; i++) {
+        if (arr[i] % 2 == 0) {
+            even_count++;  // Increments if the remainder is 0 (Even)
+        } else {
+            odd_count++;   // Increments for all other cases (Odd)
+        }
+    }
+    
+    printf("Total Even elements: %d\n", even_count);
+    printf("Total Odd elements: %d\n", odd_count);
+    
+    return 0;
+}
