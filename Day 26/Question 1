@@ -1,0 +1,21 @@
+#include <stdio.h>
+
+int main() {
+    int n = 5; // Total number of rows
+
+    for (int i = 1; i <= n; i++) {
+        // First inner loop for leading spaces
+        for (int j = 1; j <= n - i; j++) {
+            printf(" ");
+        }
+
+        int start_num = n - i + 1;
+        for (int k = 1; k <= i; k++) {
+            printf("%d", start_num++);
+        }
+
+        printf("\n");
+    }
+
+    return 0;
+}
