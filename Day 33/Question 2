@@ -1,0 +1,44 @@
+#include <stdio.h>
+
+
+void insertSorted(int arr[], int capacity, int *n, int key) {
+    // 1. Check if the array has space for a new element
+    if (*n >= capacity) {
+        printf("Error: Array overflow. Cannot insert %d.\n", key);
+        return;
+    }
+
+    int i = *n - 1;
+
+    while (i >= 0 && arr[i] > key) {
+        arr[i + 1] = arr[i];
+        i--;
+    }
+
+    arr[i + 1] = key;
+
+    (*n)++;
+}
+
+int main() {
+    int arr[10] = {12, 16, 20, 40, 50, 70}; 
+    int capacity = sizeof(arr) / sizeof(arr[0]);
+    int n = 6; // Current number of elements
+    int key = 26; // Element to insert
+
+    printf("Original array: ");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+    insertSorted(arr, capacity, &n, key);
+
+    printf("Array after inserting %d: ", key);
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
