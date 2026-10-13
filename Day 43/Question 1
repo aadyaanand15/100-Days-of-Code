@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <string.h>
+
+void reverseString(char* str) {
+    if (str == NULL || *str == '\0') {
+        return;
+    }
+
+    int start = 0;
+    int end = strlen(str) - 1;
+    char temp;
+
+    while (start < end) {
+        temp = str[start];
+        str[start] = str[end];
+        str[end] = temp;
+
+        start++;
+        end--;
+    }
+}
+
+int main() {
+    char message[] = "Hello, World!";
+    
+    printf("Original: %s\n", message);
+    
+    reverseString(message);
+    
+    printf("Reversed: %s\n", message);
+    
+    return 0;
+}
