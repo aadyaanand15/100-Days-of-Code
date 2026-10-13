@@ -1,0 +1,38 @@
+#include <stdio.h>
+
+int main() {
+    // Input date string in dd/mm/yyyy format
+    char input_date[] = "05/04/2026";
+    char output_date[12]; // Buffer to store the formatted output "dd-Mmm-yyyy\0"
+    
+    int day, month, year;
+
+    // Array of short month names (Index 0 is unused for 1-based months)
+    const char *months[] = {
+        "", "Jan", "Feb", "Mar", "Apr", "May", "Jun", 
+        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+    };
+
+    // 1. Extract day, month, and year using sscanf
+    if (sscanf(input_date, "%d/%d/%d", &day, &month, &year) == 3) {
+        
+        // 2. Validate month bounds to prevent array out-of-bounds errors
+        if (month >= 1 && month <= 12) {
+            
+            // 3. Format the new string into output_date
+            // %02d ensures the day always maintains a 2-digit format (e.g., 05)
+            sprintf(output_date, "%02d-%s-%04d", day, months[month], year);
+            
+            // Print the result
+            printf("Original Date: %s\n", input_date);
+            printf("Converted Date: %s\n", output_date);
+            
+        } else {
+            printf("Error: Invalid month extracted (%d).\n", month);
+        }
+    } else {
+        printf("Error: Failed to parse the input date format.\n");
+    }
+
+    return 0;
+}
