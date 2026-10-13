@@ -1,0 +1,24 @@
+#include <stdio.h>
+
+void replaceSpacesWithHyphens(char *str) {
+    int i = 0;
+    
+    while (str[i] != '\0') {
+        if (str[i] == ' ') {
+            str[i] = '-';
+        }
+        i++;
+    }
+}
+
+int main() {
+    char text[] = "Replace spaces with hyphens in a string";
+    
+    printf("Original string: %s\n", text);
+    
+    replaceSpacesWithHyphens(text);
+    
+    printf("Modified string: %s\n", text);
+    
+    return 0;
+}
