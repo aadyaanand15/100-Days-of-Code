@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <string.h>
+
+// Function to check if a character is a vowel
+int isVowel(char ch) {
+    return (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u' ||
+            ch == 'A' || ch == 'E' || ch == 'I' || ch == 'O' || ch == 'U');
+}
+
+void removeVowels(char *str) {
+    int i = 0; // Pointer to read through the original string
+    int j = 0; // Pointer to write non-vowel characters
+
+    while (str[i] != '\0') {
+        // If the current character is not a vowel, keep it
+        if (!isVowel(str[i])) {
+            str[j] = str[i];
+            j++;
+        }
+        i++;
+    }
+    
+    str[j] = '\0';
+}
+
+int main() {
+    char str[150];
+
+    printf("Enter a string: ");
+    fgets(str, sizeof(str), stdin);
+
+    str[strcspn(str, "\n")] = '\0';
+
+    removeVowels(str);
+
+    printf("String after removing vowels: %s\n", str);
+
+    return 0;
+}
