@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+    long long n;
+    
+    // Take a positive integer n as input
+    if (scanf("%lld", &n) != 1 || n <= 0) {
+        printf("-1\n");
+        return 0;
+    }
+
+    // Calculate total sum from 1 to n
+    long long total_sum = n * (n + 1) / 2;
+
+    // Use a loop to find the pivot integer x
+    long long current_sum = 0;
+    long long pivot = -1;
+
+    for (long long x = 1; x <= n; x++) {
+        current_sum += x;
+        
+        // Sum from x to n is (total_sum - current_sum + x)
+        if (current_sum == (total_sum - current_sum + x)) {
+            pivot = x;
+            break;
+        }
+    }
+
+    // Print the pivot integer or -1 if it doesn't exist
+    printf("%lld\n", pivot);
+
+    return 0;
+}
