@@ -1,0 +1,53 @@
+#include <stdio.h>
+
+int findPivotIndex(int arr[], int size) {
+    int total_sum = 0;
+    int left_sum = 0;
+
+    // Step 1: Calculate the total sum of the array
+    for (int i = 0; i < size; i++) {
+        total_sum += arr[i];
+    }
+
+    // Step 2: Iterate through the array to find the pivot index
+    for (int i = 0; i < size; i++) {
+        // Right sum is total sum minus left sum minus the current element
+        int right_sum = total_sum - left_sum - arr[i];
+
+        // Check if left sum equals right sum
+        if (left_sum == right_sum) {
+            return i; // Found the leftmost pivot index
+        }
+
+        // Update left sum for the next iteration
+        left_sum += arr[i];
+    }
+
+    // If no pivot index is found, return -1
+    return -1;
+}
+
+int main() {
+    int n;
+
+    // Input the size of the array
+    printf("Enter the number of elements in the array: ");
+    if (scanf("%d", &n) != 1 || n <= 0) {
+        printf("Invalid array size.\n");
+        return 1;
+    }
+
+    int arr[n];
+
+    // Input the array elements
+    printf("Enter %d integers:\n", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    // Find and print the pivot index
+    int pivot = findPivotIndex(arr, n);
+    printf("Pivot Index: %d\n", pivot);
+
+    return 0;
+}
