@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+/**
+ * Function to compute the product of array except self.
+ * Modifies the answer array directly.
+ */
+void productExceptSelf(int* nums, int numsSize, int* answer) {
+    // Step 1: Calculate prefix products and store them in the answer array
+    // answer[i] will store the product of all elements to the left of i
+    int leftProduct = 1;
+    for (int i = 0; i < numsSize; i++) {
+        answer[i] = leftProduct;
+        leftProduct *= nums[i];
+    }
+
+    // Step 2: Calculate suffix products on the fly and multiply with prefix products
+    // rightProduct tracks the product of all elements to the right of i
+    int rightProduct = 1;
+    for (int i = numsSize - 1; i >= 0; i--) {
+        answer[i] *= rightProduct;
+        rightProduct *= nums[i];
+    }
+}
+
+int main() {
+    int nums[] = {1, 2, 3, 4};
+    int n = sizeof(nums) / sizeof(nums[0]);
+    
+    // Allocate memory for the output array
+    int* answer = (int*)malloc(n * sizeof(int));
+    if (answer == NULL) {
+        printf("Memory allocation failed.\n");
+        return 1;
+    }
+
+    // Process the array
+    productExceptSelf(nums, n, answer);
+
+    // Print the result
+    printf("Input Array:  [ ");
+    for (int i = 0; i < n; i++) printf("%d ", nums[i]);
+    printf("]\n");
+
+    printf("Output Array: [ ");
+    for (int i = 0; i < n; i++) printf("%d ", answer[i]);
+    printf("]\n");
+
+    // Clean up memory
+    free(answer);
+    return 0;
+}
