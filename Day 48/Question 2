@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <string.h>
+
+void reverse(char *str, int start, int end) {
+    char temp;
+    while (start < end) {
+        temp = str[start];
+        str[start] = str[end];
+        str[end] = temp;
+        start++;
+        end--;
+    }
+}
+
+void reverseWords(char *str) {
+    int start = 0;
+    int len = strlen(str);
+
+    for (int end = 0; end <= len; end++) {
+        if (str[end] == ' ' || str[end] == '\0') {
+            reverse(str, start, end - 1);
+            
+            start = end + 1;
+        }
+    }
+}
+
+int main() {
+    char sentence[] = "Hello World from C programming";
+    
+    printf("Original Sentence: %s\n", sentence);
+    
+    reverseWords(sentence);
+    
+    printf("Modified Sentence: %s\n", sentence);
+    
+    return 0;
+}
