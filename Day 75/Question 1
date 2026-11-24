@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    FILE *file;
+    char text[256];
+
+    // Open the file in append mode ("a")
+    // Creates the file if it doesn't exist, or moves the pointer to the end if it does
+    file = fopen("example.txt", "a");
+
+    // Check if the file opened successfully
+    if (file == NULL) {
+        printf("Error: Could not open the file.\n");
+        return 1;
+    }
+
+    // Prompt the user for input
+    printf("Enter a new line of text to append: ");
+    if (fgets(text, sizeof(text), stdin) != NULL) {
+        // Write the user's input to the end of the file
+        fprintf(file, "%s", text);
+        printf("Text appended successfully!\n");
+    } else {
+        printf("Error reading input.\n");
+    }
+
+    // Close the file to save changes
+    fclose(file);
+
+    return 0;
+}
