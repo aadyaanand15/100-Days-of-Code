@@ -1,0 +1,31 @@
+#include <stdio.h>
+
+// Define the enum for traffic lights
+enum TrafficLight {
+    RED,
+    YELLOW,
+    GREEN
+};
+
+int main() {
+    // Declare and initialize a variable of type enum TrafficLight
+    enum TrafficLight signal = RED;
+
+    // Print the message based on the enum value
+    switch (signal) {
+        case RED:
+            printf("Stop\n");
+            break;
+        case YELLOW:
+            printf("Wait\n");
+            break;
+        case GREEN:
+            printf("Go\n");
+            break;
+        default:
+            printf("Invalid signal\n");
+            break;
+    }
+
+    return 0;
+}
