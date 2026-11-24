@@ -1,0 +1,33 @@
+#include <stdio.h>
+
+// Default numbering starts at 0
+enum TrafficLight {
+    RED,      // 0
+    YELLOW,   // 1
+    GREEN     // 2
+};
+
+// Custom numbering increments from the last assigned value
+enum StatusCode {
+    OK = 200,
+    CREATED,          // 201 (auto-incremented)
+    BAD_REQUEST = 400,
+    NOT_FOUND = 404
+};
+
+int main() {
+    enum TrafficLight signal = GREEN;
+    enum StatusCode response = CREATED;
+
+    // Printing with %d proves they are stored as integers
+    printf("Default enum values:\n");
+    printf("RED = %d, YELLOW = %d, signal (GREEN) = %d\n\n", RED, YELLOW, signal);
+
+    printf("Custom enum values:\n");
+    printf("OK = %d, response (CREATED) = %d, NOT_FOUND = %d\n", OK, response, NOT_FOUND);
+
+    // You can even perform integer math with them
+    printf("\nMath check (GREEN + OK): %d\n", signal + OK);
+
+    return 0;
+}
