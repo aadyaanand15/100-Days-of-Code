@@ -1,0 +1,35 @@
+#include <stdio.h>
+
+// 1. Define the enum
+enum Gender {
+    MALE,
+    FEMALE,
+    OTHER
+};
+
+// 2. Define the struct using the enum
+struct Person {
+    char name[50];
+    enum Gender gender;
+};
+
+// Helper function to convert enum integer to a readable string
+const char* getGenderString(enum Gender g) {
+    switch (g) {
+        case MALE:   return "Male";
+        case FEMALE: return "Female";
+        case OTHER:  return "Other";
+        default:     return "Unknown";
+    }
+}
+
+int main() {
+    // 3. Create and initialize a struct variable
+    struct Person p1 = {"Alex", FEMALE};
+
+    // 4. Print the person's details
+    printf("Name: %s\n", p1.name);
+    printf("Gender: %s\n", getGenderString(p1.gender));
+
+    return 0;
+}
