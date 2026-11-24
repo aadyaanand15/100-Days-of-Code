@@ -1,0 +1,47 @@
+#include <stdio.h>
+
+struct Student {
+    char name[50];
+    int rollNo;
+    float marks;
+};
+
+int main() {
+    int n, i, topIndex = 0;
+
+    printf("Enter the number of students: ");
+    scanf("%d", &n);
+
+    if (n <= 0) {
+        printf("Invalid number of students.\n");
+        return 1;
+    }
+
+    struct Student students[n];
+
+    // Input student details
+    for (i = 0; i < n; i++) {
+        printf("\nEnter details for student %d:\n", i + 1);
+        printf("Name: ");
+        scanf(" %49[^\n]", students[i].name); // Reads full name including spaces
+        printf("Roll Number: ");
+        scanf("%d", &students[i].rollNo);
+        printf("Marks: ");
+        scanf("%f", &students[i].marks);
+    }
+
+    // Find the index of the student with the highest marks
+    for (i = 1; i < n; i++) {
+        if (students[i].marks > students[topIndex].marks) {
+            topIndex = i;
+        }
+    }
+
+    // Print the top student's details
+    printf("\n--- Student with the Highest Marks ---\n");
+    printf("Name: %s\n", students[topIndex].name);
+    printf("Roll Number: %d\n", students[topIndex].rollNo);
+    printf("Marks: %.2f\n", students[topIndex].marks);
+
+    return 0;
+}
