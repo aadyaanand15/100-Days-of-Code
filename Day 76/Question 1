@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char filename[256];
+    FILE *file;
+    int ch;
+
+    // 1. Ask the user for a filename
+    printf("Enter the filename: ");
+    if (fgets(filename, sizeof(filename), stdin) != NULL) {
+        // Remove the trailing newline character added by fgets
+        filename[strcspn(filename, "\n")] = '\0';
+    }
+
+    // 2. Try to open the file in read mode ("r")
+    file = fopen(filename, "r");
+
+    // 3. Check if the file pointer is NULL
+    if (file == NULL) {
+        perror("Error opening file"); // Prints a descriptive system error
+        return 1;
+    }
+
+    // 4. Read and display the content character by character
+    printf("\n--- File Content ---\n");
+    while ((ch = fgetc(file)) != EOF) {
+        putchar(ch);
+    }
+    printf("\n--------------------\n");
+
+    // 5. Close the file
+    fclose(file);
+
+    return 0;
+}
