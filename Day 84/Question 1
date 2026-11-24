@@ -1,0 +1,35 @@
+#include <stdio.h>
+
+// Define the enum
+enum Status {
+    SUCCESS,
+    FAILURE,
+    TIMEOUT
+};
+
+void printStatusMessage(enum Status currentStatus) {
+    switch (currentStatus) {
+        case SUCCESS:
+            printf("Operation completed successfully.\n");
+            break;
+        case FAILURE:
+            printf("Operation failed. Please check the error logs.\n");
+            break;
+        case TIMEOUT:
+            printf("Operation timed out. Please try again later.\n");
+            break;
+        default:
+            printf("Unknown status.\n");
+            break;
+    }
+}
+
+int main() {
+    // Declare an enum variable and assign a value
+    enum Status status = TIMEOUT;
+
+    // Print the corresponding message
+    printStatusMessage(status);
+
+    return 0;
+}
