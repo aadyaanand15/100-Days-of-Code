@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <stdbool.h>
+
+#define MAX_VAL 100000 // Adjust based on the maximum expected value in the array
+
+int main() {
+    int n;
+    printf("Enter the number of elements: ");
+    scanf("%d", &n);
+
+    int arr[n];
+    bool seen[MAX_VAL] = {false}; // Tracks numbers we have already encountered
+    int repeated = -1;
+
+    printf("Enter %d elements (between 0 and %d):\n", n, MAX_VAL - 1);
+
+    // Single iteration for both taking input and finding the duplicate
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+
+        // Check if the current element was already seen
+        if (seen[arr[i]]) {
+            repeated = arr[i];
+        } else {
+            seen[arr[i]] = true;
+        }
+    }
+
+    if (repeated != -1) {
+        printf("The repeated element is: %d\n", repeated);
+    } else {
+        printf("No repeated element found.\n");
+    }
+
+    return 0;
+}
