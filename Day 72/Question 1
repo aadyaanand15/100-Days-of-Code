@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    FILE *filePointer;
+    char buffer[256]; // Buffer to hold each line read from the file
+
+    // Open the file in read mode ("r")
+    filePointer = fopen("info.txt", "r");
+
+    // Check if the file was opened successfully
+    if (filePointer == NULL) {
+        perror("Error opening file");
+        return 1; // Exit with an error code
+    }
+
+    // Read lines from the file until fgets() returns NULL (indicating EOF or error)
+    while (fgets(buffer, sizeof(buffer), filePointer) != NULL) {
+        printf("%s", buffer);
+    }
+
+    // Close the file to free system resources
+    fclose(filePointer);
+
+    return 0;
+}
