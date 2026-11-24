@@ -1,0 +1,64 @@
+#include <stdio.h>
+
+// Define an enum for the months starting at 1
+enum Month {
+    JANUARY = 1,
+    FEBRUARY,
+    MARCH,
+    APRIL,
+    MAY,
+    JUNE,
+    JULY,
+    AUGUST,
+    SEPTEMBER,
+    OCTOBER,
+    NOVEMBER,
+    DECEMBER
+};
+
+// Helper function to get the month's name as a string
+const char* getMonthName(enum Month m) {
+    const char* names[] = {
+        "", "January", "February", "March", "April", 
+        "May", "June", "July", "August", 
+        "September", "October", "November", "December"
+    };
+    return names[m];
+}
+
+// Function to print the days in a given month
+void printDaysInMonth(enum Month m) {
+    printf("%-10s : ", getMonthName(m));
+    
+    switch (m) {
+        case JANUARY:
+        case MARCH:
+        case MAY:
+        case JULY:
+        case AUGUST:
+        case OCTOBER:
+        case DECEMBER:
+            printf("31 days\n");
+            break;
+            
+        case APRIL:
+        case JUNE:
+        case SEPTEMBER:
+        case NOVEMBER:
+            printf("30 days\n");
+            break;
+            
+        case FEBRUARY:
+            printf("28 or 29 days (Leap Year)\n");
+            break;
+    }
+}
+
+int main() {
+    // Loop from JANUARY (1) to DECEMBER (12)
+    for (enum Month m = JANUARY; m <= DECEMBER; m++) {
+        printDaysInMonth(m);
+    }
+    
+    return 0;
+}
