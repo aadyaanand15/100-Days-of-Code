@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <ctype.h>
+#include <stdbool.h>
+
+void toSentenceCase(char *str) {
+    bool newSentence = true;
+
+    for (int i = 0; str[i] != '\0'; i++) {
+        // Check if the current character is an alphabet letter
+        if (isalpha((unsigned char)str[i])) {
+            if (newSentence) {
+                str[i] = toupper((unsigned char)str[i]);
+                newSentence = false;
+            } else {
+                str[i] = tolower((unsigned char)str[i]);
+            }
+        } 
+        // Reset the flag when a sentence-ending punctuation mark is found
+        else if (str[i] == '.' || str[i] == '!' || str[i] == '?') {
+            newSentence = true;
+        }
+    }
+}
+
+int main() {
+    char str[500];
+
+    printf("Enter a string: ");
+    // fgets safely reads a full line of text including spaces
+    if (fgets(str, sizeof(str), stdin) != NULL) {
+        toSentenceCase(str);
+        printf("Sentence case: %s", str);
+    }
+
+    return 0;
+}
