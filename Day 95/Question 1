@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <string.h>
+
+// 1. Define the structure
+struct Student {
+    int rollNo;
+    char name[50];
+    float marks;
+};
+
+// 2. Function with 'struct Student' as the return type
+struct Student getTopStudent(struct Student students[], int count) {
+    struct Student top = students[0]; // Assume the first student is the topper
+
+    for (int i = 1; i < count; i++) {
+        if (students[i].marks > top.marks) {
+            top = students[i]; // Copy the entire structure
+        }
+    }
+
+    return top; // Return the structure by value
+}
+
+int main() {
+    struct Student classList[3] = {
+        {101, "Aarav", 88.5},
+        {102, "Priya", 95.0},
+        {103, "Rohan", 91.2}
+    };
+
+    // 3. Receive the returned structure
+    struct Student topper = getTopStudent(classList, 3);
+
+    printf("Top Student Details:\n");
+    printf("Roll No : %d\n", topper.rollNo);
+    printf("Name    : %s\n", topper.name);
+    printf("Marks   : %.2f\n", topper.marks);
+
+    return 0;
+}
